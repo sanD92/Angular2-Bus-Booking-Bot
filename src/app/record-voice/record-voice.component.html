@@ -1,0 +1,69 @@
+<div class="container ">
+  <div class="row">
+    <div class="col col-lg-6 col-md-6 col-sm-12">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">Ticket Booking</h3>
+        </div>
+        <div class="panel-body" id="body">
+          <div *ngIf="entityExtractResponse===null">
+              <div class="col col-lg-12 col-md-12 col-xs-12">
+                
+                  FROM:
+                  <input type="text" class="form-control" name="source" placeholder="Source City" id="source" /><br>
+                </div>
+                <div class="col col-lg-12 col-md-12 col-xs-12">
+                  TO:
+                  <input type="text" class="form-control" name="destination" placeholder="Destination City" id="destination" /> <br>
+                </div>
+                <div class="col col-lg-12 col-md-12 col-xs-12">
+                  ONWARD DATE:
+                  <input type="text" class="form-control" placeholder="Specify Date" id="date" /><br>
+                </div>
+                <div class="col col-lg-12 col-md-12 col-xs-12">
+                  SEATS:
+                  <input type="text" class="form-control" placeholder="Number of Seats" id="seats" /><br>
+                </div>
+          </div>
+          <div *ngFor="let entity of entityExtractResponse,let i=index">
+              <!-- entity.utterances["0"].entities["0"].type -->
+            <!-- .utterances["0"].entities["0"].entity -->
+            <!-- {{entity.utterances["0"].entities["0"].entity}} {{entity.utterances["0"].entities["1"].entity}}-->
+            <div  class="col col-lg-12 col-md-12 col-xs-12">
+              FROM:
+              <input  type="text" class="form-control" [value]="entity.utterances[0].entities[0].entity" name="source" placeholder="Source City"
+                id="source" />
+              <br>
+            </div>
+            <div class="col col-lg-12 col-md-12 col-xs-12">
+              TO:
+              <input type="text" class="form-control" [value]="entity.utterances[0].entities[1].entity" name="destination" placeholder="Destination City"
+                id="destination" />
+              <br>
+            </div>
+            <div class="col col-lg-12 col-md-12 col-xs-12">
+              ONWARD DATE:
+              <input type="text" class="form-control" [value]="entity.utterances[0].entities[2].entity" placeholder="Specify Date" id="date" />
+              <br>
+            </div>
+            <div class="col col-lg-12 col-md-12 col-xs-12">
+              SEATS:
+              <input type="text" class="form-control" [value]="entity.utterances[0].entities[3].entity" placeholder="Number of Seats" id="seats" />
+              <br>
+            </div>
+          </div>
+
+          <div class="col col-lg-12 col-md-12 col-xs-12 text-center">
+            <img id="speakerOff" src="assets/speakerOff.png" (click)="StartRecording()" width="70" height="70" />
+            <img id="speakerOn" src="assets/speakerOn.png" (click)="StopRecording($event)" width="70" height="70" />
+            <!--  style="display:none" -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- <h1>data is {{entityExtractResponse ? 'data received' : 'waiting....'}}</h1> -->
+<!-- value is {{entityExtractResponse | json}} -->
+<!-- <h1 [innerHTML] = "getEntityRes()"></h1> -->
